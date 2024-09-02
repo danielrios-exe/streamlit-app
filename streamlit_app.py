@@ -317,14 +317,10 @@ fig3, ax3 = plt.subplots()
 sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Ciudad"].unique())
 ganancias_df = ganancias_df[ganancias_df["Ciudad"] == sucursarl]
 
-# Grafico de barras
-sns.barplot(data=ganancias_df, x="Mes", y="Ganancia")
+sns.barplot(x="Mes", y="Ganancias", data=ganancias_df, ax=ax3)
+ax3.set_title("Ganancias por Mes")
+ax3.set_xlabel("Mes")
+ax3.set_ylabel("Ganancias")
 
-
-print("sucursarl", sucursarl)
-print(
-    "ganancias_df",
-    ganancias_df,
-)
-ax3.set_xlabel(sucursarl)
-ax3.set_ylabel("Ganancia")
+st.pyplot(fig3)
+st.divider()
