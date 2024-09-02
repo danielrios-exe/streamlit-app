@@ -221,7 +221,6 @@ st.markdown(":violet[El **DataFrame** es el siguiente:]")
 st.dataframe(datos_df)
 st.divider()
 
-st.title(vars_per[default_pers])
 # ------------------------------------------------------------------
 # ----- Configuración de los Elementos del Panel Central -----------
 # ------------------------------------------------------------------
@@ -280,6 +279,7 @@ periodo_df = periodo_df.transpose()
 periodo_df = periodo_df.to_frame()
 periodo_df = periodo_df.rename(columns={1: "MES"})
 periodo_df = periodo_df.drop(["NOMBRE", "APELLIDO", "CIUDAD"])
+st.title(ganan_selected)
 plt.plot(periodo_df)
 ax2.set_title("Ganancias Mensuales por Persona")
 ax2.set_xlabel(ganan_selected)
@@ -303,3 +303,6 @@ sns.heatmap(df_corr, annot=anotacion, fmt=".2f", cmap=color_selected)
 # Renderización del gráfico
 st.pyplot(fig3)
 st.divider()
+
+# ----- Lectura de los Datos Desde el Archivo CSV ------------------
+ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
