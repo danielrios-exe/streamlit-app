@@ -225,6 +225,32 @@ st.divider()
 # ----- Configuración de los Elementos del Panel Central -----------
 # ------------------------------------------------------------------
 
+# Generación del gráfico
+if ganan_selected == "Iñaki González":
+    periodo_df = datos_df.iloc[0]
+elif ganan_selected == "María Cázares":
+    periodo_df = datos_df.iloc[1]
+elif ganan_selected == "José García":
+    periodo_df = datos_df.iloc[2]
+elif ganan_selected == "Jérémie Muñoz":
+    periodo_df = datos_df.iloc[3]
+elif ganan_selected == "Agnès Villalón":
+    periodo_df = datos_df.iloc[4]
+elif ganan_selected == "Bérénice Pitkämäki":
+    periodo_df = datos_df.iloc[5]
+elif ganan_selected == "Geneviève Rukajärvi":
+    periodo_df = datos_df.iloc[6]
+elif ganan_selected == "Hélène Ñuñoz":
+    periodo_df = datos_df.iloc[7]
+elif ganan_selected == "Ñaguí Grönholm":
+    periodo_df = datos_df.iloc[8]
+elif ganan_selected == "Iván Földváry":
+    periodo_df = datos_df.iloc[9]
+else:
+    periodo_df = datos_df
+
+st.title(ganan_selected)
+
 # ----- HISTOGRAMA POR MES -----------------------------------------
 # Definición de las columnas
 colum_izq, colum_der = st.columns(2)
@@ -252,34 +278,11 @@ colum_der.subheader("Ganancias")
 # Inicialización del gráfico
 fig2, ax2 = plt.subplots()
 
-# Generación del gráfico
-if ganan_selected == "Iñaki González":
-    periodo_df = datos_df.iloc[0]
-elif ganan_selected == "María Cázares":
-    periodo_df = datos_df.iloc[1]
-elif ganan_selected == "José García":
-    periodo_df = datos_df.iloc[2]
-elif ganan_selected == "Jérémie Muñoz":
-    periodo_df = datos_df.iloc[3]
-elif ganan_selected == "Agnès Villalón":
-    periodo_df = datos_df.iloc[4]
-elif ganan_selected == "Bérénice Pitkämäki":
-    periodo_df = datos_df.iloc[5]
-elif ganan_selected == "Geneviève Rukajärvi":
-    periodo_df = datos_df.iloc[6]
-elif ganan_selected == "Hélène Ñuñoz":
-    periodo_df = datos_df.iloc[7]
-elif ganan_selected == "Ñaguí Grönholm":
-    periodo_df = datos_df.iloc[8]
-elif ganan_selected == "Iván Földváry":
-    periodo_df = datos_df.iloc[9]
-else:
-    periodo_df = datos_df
+
 periodo_df = periodo_df.transpose()
 periodo_df = periodo_df.to_frame()
 periodo_df = periodo_df.rename(columns={1: "MES"})
 periodo_df = periodo_df.drop(["NOMBRE", "APELLIDO", "CIUDAD"])
-st.title(ganan_selected)
 plt.plot(periodo_df)
 ax2.set_title("Ganancias Mensuales por Persona")
 ax2.set_xlabel(ganan_selected)
@@ -306,3 +309,16 @@ st.divider()
 
 # ----- Lectura de los Datos Desde el Archivo CSV ------------------
 ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
+
+# ----- Renderizado del Texto --------------------------------------
+st.markdown(":violet[**DATAFRAME PARA EL MANEJO DE INFORMACIÓN DE GANANCIAS**]")
+st.markdown(
+    ":blue[Este **DataFrame** contiene información de las ganancias de varias personas, "
+    "así como su identificador único. En esta aplicación se generan los siguientes gráficos:]"
+)
+st.markdown(":blue[*- **Histograma** para las **Ganancias** de las Personas.*]")
+st.markdown(":blue[*- **Ganancias** para cada persona del **DataFrame**.*]")
+st.markdown(
+    ":blue[*- **Matriz de Correlación** para los Meses Seleccionados del **DataFrame**.*]"
+)
+st.markdown(":violet[El **DataFrame** es el siguiente:]")
