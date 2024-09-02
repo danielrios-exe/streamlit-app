@@ -310,15 +310,22 @@ st.divider()
 # ----- Lectura de los Datos Desde el Archivo CSV ------------------
 ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
 
-# ----- Renderizado del Texto --------------------------------------
-st.markdown(":violet[**DATAFRAME PARA EL MANEJO DE INFORMACIÓN DE GANANCIAS**]")
-st.markdown(
-    ":blue[Este **DataFrame** contiene información de las ganancias de varias personas, "
-    "así como su identificador único. En esta aplicación se generan los siguientes gráficos:]"
-)
-st.markdown(":blue[*- **Histograma** para las **Ganancias** de las Personas.*]")
-st.markdown(":blue[*- **Ganancias** para cada persona del **DataFrame**.*]")
-st.markdown(
-    ":blue[*- **Matriz de Correlación** para los Meses Seleccionados del **DataFrame**.*]"
-)
-st.markdown(":violet[El **DataFrame** es el siguiente:]")
+sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Sucursal"].unique())
+ganancias_df = ganancias_df[ganancias_df["Sucursal"] == sucursarl]
+st.dataframe(ganancias_df)
+st.divider()
+st.title("Ganancias")
+fig1, ax1 = plt.subplots()
+sns.set(style="darkgrid")
+sns.histplot(data=datos_df[histo_selected])
+ax1.set_title("Ganancias")
+ax1.set_xlabel(histo_selected)
+
+
+print(ganancias_df)
+fig1, ax1 = plt.subplots()
+sns.set(style="darkgrid")
+sns.histplot(data=datos_df[histo_selected])
+ax1.set_title("Ganancias")
+ax1.set_xlabel(histo_selected)
+ax1.set_ylabel("Frecuencia")
