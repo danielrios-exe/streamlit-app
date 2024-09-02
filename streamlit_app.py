@@ -221,7 +221,7 @@ st.markdown(":violet[El **DataFrame** es el siguiente:]")
 st.dataframe(datos_df)
 st.divider()
 
-st.title(vars_per.index(ganan_selected))
+st.title(vars_per[default_pers])
 # ------------------------------------------------------------------
 # ----- Configuración de los Elementos del Panel Central -----------
 # ------------------------------------------------------------------
