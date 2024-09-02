@@ -310,22 +310,9 @@ st.divider()
 # ----- Lectura de los Datos Desde el Archivo CSV ------------------
 ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
 
-sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Sucursal"].unique())
-ganancias_df = ganancias_df[ganancias_df["Sucursal"] == sucursarl]
-st.dataframe(ganancias_df)
-st.divider()
-st.title("Ganancias")
-fig1, ax1 = plt.subplots()
-sns.set(style="darkgrid")
-sns.histplot(data=datos_df[histo_selected])
+sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Ciudad"].unique())
+ganancias_df = ganancias_df[ganancias_df["Ciudad"] == sucursarl]
+
+sns.histplot(data=ganancias_df[sucursarl])
 ax1.set_title("Ganancias")
 ax1.set_xlabel(histo_selected)
-
-
-print(ganancias_df)
-fig1, ax1 = plt.subplots()
-sns.set(style="darkgrid")
-sns.histplot(data=datos_df[histo_selected])
-ax1.set_title("Ganancias")
-ax1.set_xlabel(histo_selected)
-ax1.set_ylabel("Frecuencia")
