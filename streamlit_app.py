@@ -314,13 +314,7 @@ st.divider()
 ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
 fig3, ax3 = plt.subplots()
 
-sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Ciudad"].unique())
-ganancias_df = ganancias_df[ganancias_df["Ciudad"] == sucursarl]
-
-sns.barplot(x="Mes", y="Ganancias", data=ganancias_df, ax=ax3)
-ax3.set_title("Ganancias por Mes")
-ax3.set_xlabel("Mes")
-ax3.set_ylabel("Ganancias")
-
-st.pyplot(fig3)
+# Tabla de ganancias
+st.markdown(":violet[**GANANCIAS POR MES**]")
+st.dataframe(ganancias_df)
 st.divider()
