@@ -268,6 +268,9 @@ ax1.set_title("Histograma de Valores")
 ax1.set_xlabel(histo_selected)
 ax1.set_ylabel("Frecuencia")
 
+print("histo_selected", histo_selected)
+print("datos_df[histo_selected]", datos_df[histo_selected])
+
 # ----- GRÁFICO DE LÍNEAS PARA LAS GANANCIAS -----------------------
 # Renderización del gráfico
 colum_izq.pyplot(fig1)
@@ -309,10 +312,19 @@ st.divider()
 
 # ----- Lectura de los Datos Desde el Archivo CSV ------------------
 ganancias_df = pd.read_csv("./Datos/Ganancias_id.csv")
+fig3, ax3 = plt.subplots()
 
 sucursarl = st.sidebar.selectbox("Sucursal", ganancias_df["Ciudad"].unique())
 ganancias_df = ganancias_df[ganancias_df["Ciudad"] == sucursarl]
 
-sns.histplot(data=ganancias_df[sucursarl])
-ax1.set_title("Ganancias")
-ax1.set_xlabel(histo_selected)
+# Grafico de barras
+sns.barplot(data=ganancias_df, x="Mes", y="Ganancia")
+
+
+print("sucursarl", sucursarl)
+print(
+    "ganancias_df",
+    ganancias_df,
+)
+ax3.set_xlabel(sucursarl)
+ax3.set_ylabel("Ganancia")
